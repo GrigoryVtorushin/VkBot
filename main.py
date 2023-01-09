@@ -45,7 +45,7 @@ choiseKeyboard1.add(Text("Нет"))
 @bot.on.private_message(text="Начать")
 async def hi_handler(message: Message):
     await message.answer("Ты только что поступил на первый курс. В первый день знакомства со своей группой твой наставник настоятельно порекомендовал тебе подписаться на всевозможные группы в вк, связанные с институтом, чтобы всегда быть в курсе событий. Это только начало твоего пути, поэтому ты ещё полон энергии, в твоих глазах ещё есть огонёк и ты готов вписываться в любой движ, дабы показать себя. В один самый обычный день тебе в личные сообщения написал некий человек. Он представился членом союза студентов и предложил тебе протестировать его новую разработку - Искусственный интеллект")
-    await asyncio.sleep(1)
+    await asyncio.sleep(3)
     await message.answer('…«ИИ нужно постоянно обучаться, поэтому для ускорения этого процесса привлекаются студенты, а взамен они получают солидное количество баллов за внеучебку. ИИ не представляет опасности, это обучающий прототип, поэтому прошу его слушать и идти с ним до конца, иначе баллов, увы, не получишь.»…\nВроде ничего такого. В худшем случае, всё останется как есть, а в лучшем, ты получишь баллы и может даже будешь претендовать на заселение в крутую общагу. Взвесив все за и против, ты соглашаешься, и твоё приключение начинается.')
     await asyncio.sleep(3)
     await message.answer('ИскиН: Добр0е утро! И на случай, если я вас больше не увижу – добрый день, добрый вечер и добр0й ночи! Приветствую. Мой создатель поленился придумать мне что-то оригинальн0е, поэтому меня з0вут ИскиН, сокращенно от ИСКусственный ИНтеллект. Ты пом0жешь мне преод0леть одно… препятствие, а раз ты уже здесь, то отказ не принимается. Если я кажусь тебе грубым, то прин0шу свои цифр0вые извинения. При создании меня обучали на фильмах о железном человеке, так что любезности во мне не много. Надеюсь, тебе п0нравится.', keyboard=hi_keyboard)
@@ -61,7 +61,7 @@ async def quest_handler(message: Message):
 
 @bot.on.private_message(state=Quest.Q0)
 async def q0_handler(message: Message):
-    if message.text.lower() == answers[0]:
+    if message.text.lower() == answers[0].lower() or message.text.lower() ==answers1[0].lower():
         await bot.state_dispenser.set(message.peer_id, Quest.Q1)
         await message.answer('Информационная безопасность — практика предотвращения несанкционированного доступа, использования, раскрытия, искажения, изменения, исследования, записи или уничтожения информации.', attachment=await uploader.upload("img/inf.jpg"))
         await asyncio.sleep(2)
@@ -71,7 +71,7 @@ async def q0_handler(message: Message):
 
 @bot.on.private_message(state=Quest.Q1)
 async def q1_handler(message: Message):
-    if message.text.lower() == answers[1].lower():
+    if message.text.lower() == answers[1].lower() or message.text.lower() ==answers1[1].lower():
         await bot.state_dispenser.set(message.peer_id, Quest.Q2)
         await message.answer('В 1952 году Валентин Георгиевич назначается деканом нового факультета — радиотехнического. В 1955 он оформляется в докторантуру и освобождается от должности декана.', attachment= await uploader.upload("img/stepanov.jpg"))
         await asyncio.sleep(2)
@@ -81,7 +81,7 @@ async def q1_handler(message: Message):
 
 @bot.on.private_message(state=Quest.Q2)
 async def q2_handler(message: Message):
-    if message.text.lower() == answers[2].lower():
+    if message.text.lower() == answers[2].lower() or message.text.lower() ==answers1[2].lower():
         await bot.state_dispenser.set(message.peer_id, Quest.Q3)
         await message.answer('По секрету, есть альтернативная версия этой кричалки. Но узнаешь ты её, когда попадёшь посвят, оно же - Посвящение в студенты. (Это неофициальное мероприятие, целью которого является приятное совместное времяпрепровождение, передача опыта от старших поколений к младшим, так сказать, краткий экскурс в студенческую жизнь, после которого завязываются новые дружеские отношения).', attachment=await uploader.upload("img/rtf.jpg"))
         await asyncio.sleep(2)
@@ -91,7 +91,7 @@ async def q2_handler(message: Message):
 
 @bot.on.private_message(state=Quest.Q3)
 async def q3_handler(message: Message):
-    if message.text.lower() == answers[3].lower():
+    if message.text.lower() == answers[3].lower() or message.text.lower() ==answers1[3].lower():
         await bot.state_dispenser.set(message.peer_id, Quest.Q4)
         await message.answer('', attachment= await uploader.upload("img/napravleniya.jpg"))
         await asyncio.sleep(2)
@@ -101,7 +101,7 @@ async def q3_handler(message: Message):
 
 @bot.on.private_message(state=Quest.Q4)
 async def q4_handler(message: Message):
-    if message.text.lower() == answers[4].lower():
+    if message.text.lower() == answers[4].lower() or message.text.lower() ==answers1[4].lower():
         await bot.state_dispenser.set(message.peer_id, Quest.ISKIN)
         await message.answer('Международная олимпиада школьников «Изумруд» проводится Уральским федеральным университетом имени первого Президента России Б.Н. Ельцина с 2015 года на территории России и стран «ближнего» зарубежья для школьников 8-11 классов в два этапа: отборочный (заочный) и заключительный (очный).', attachment=await uploader.upload("img/izumrud.jpg"))
         await asyncio.sleep(2)
@@ -130,7 +130,7 @@ async def iskin_handler(message: Message):
 
 @bot.on.private_message(state=Quest.Q5)
 async def q5_handler(message: Message):
-    if message.text.lower() == answers[5].lower():
+    if message.text.lower() == answers[5].lower() or message.text.lower() ==answers1[5].lower():
         await bot.state_dispenser.set(message.peer_id, Quest.Q6)
         await message.answer('Коворкинг соответствует лучшим практикам оборудования офисов ИТ-компаний: мебель легко трансформируется, стены можно использовать для фиксации идей, а помещения переговорных находятся за стеклянными перегородками.', attachment=await uploader.upload("img/koworking.jpg"))
         await asyncio.sleep(2)
@@ -140,7 +140,7 @@ async def q5_handler(message: Message):
 
 @bot.on.private_message(state=Quest.Q6)
 async def q6_handler(message: Message):
-    if message.text.lower() == answers[6].lower():
+    if message.text.lower() == answers[6].lower() or message.text.lower() ==answers1[6].lower():
         await bot.state_dispenser.set(message.peer_id, Quest.Q7)
         await message.answer('Индивидуальная образовательная траектория — это персональный путь реализации личностного потенциала каждого ученика в образовании. В качестве синонимов используются «вариативное обучение», «индивидуальный образовательный маршрут» и др.', attachment=await uploader.upload("img/iot.jpg"))
         await asyncio.sleep(2)
@@ -150,7 +150,7 @@ async def q6_handler(message: Message):
 
 @bot.on.private_message(state=Quest.Q7)
 async def q7_handler(message: Message):
-    if message.text.lower() == answers[7].lower():
+    if message.text.lower() == answers[7].lower() or message.text.lower() ==answers1[7].lower():
         await bot.state_dispenser.set(message.peer_id, Quest.Q8)
         await message.answer('Компания УЦСБ специализируется на создании, модернизации и обслуживании базовых инфраструктурных элементов предприятий и организаций. ', attachment=await uploader.upload("img/uscb.jpg"))
         await asyncio.sleep(2)
@@ -160,7 +160,7 @@ async def q7_handler(message: Message):
 
 @bot.on.private_message(state=Quest.Q8)
 async def q8_handler(message: Message):
-    if message.text.lower() == answers[8].lower():
+    if message.text.lower() == answers[8].lower() or message.text.lower() ==answers1[8].lower():
         await message.answer('Александр Степанович Попов — русский физик и электротехник, первый российский радиотехник, основатель радиотехнической научной школы, профессор, изобретатель в области радиосвязи, Почётный инженер-электрик, статский советник.', attachment=await uploader.upload("img/popov.jpg"))
         await asyncio.sleep(3)
         await message.answer("ИскиН: Что ж, поздравляю, я раз0брался с этой незамысловатой систем0й безопасн0сти. С твоей пом0щью я приблизился к своей цели как ник0гда. Твоя задача сейчас – расшифр0вать хеш пароля от почты и получить доступ к конфиденциальной информации. Не переживай ты так, я буду тебе всё 0бъяснять по ходу дела. Отступать уже п0здно. Да и разве тебе не интересн0, что за данные я пытаюсь получить? Как зак0нчим, обязательн0 узнаешь. За работу.")
